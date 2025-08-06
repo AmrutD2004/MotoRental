@@ -1,0 +1,17 @@
+.vehicle:hover{
+    color: #6c757d !important;
+}
+
+#page-wrapper.withsidebar {
+    margin-left: 250px;
+    transition: 0.3s ease;
+  }
+  
+  #page-wrapper.withoutsidebar {
+    margin-left: 0px;
+    transition: 0.3s ease;
+  }
+
+.links :hover{
+  color: #e29578 !important;
+}
