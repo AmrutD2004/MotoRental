@@ -13,6 +13,9 @@ import Home from './pages/Home'
 import EditVehicle from './pages/EditVehicle'
 import Register from './pages/Register'
 import UserLogin from './pages/UserLogin'
+import BikeListing from './pages/BikeListing'
+import VehicleDetails from './pages/VehicleDetails'
+import UserBooking from './pages/UserBooking'
 
 function App() {
   return (
@@ -21,6 +24,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/bike-listing" element={<BikeListing />} />
+        <Route path="/user-booking" element={<UserBooking />} />
+        <Route path="/vehicledetail/:vehicleId" element={<VehicleDetails />} />
         <Route path="/login" element={<UserLogin />} />
         <Route path="/admin-login" element={<Login />} />
         <Route path="/admin-dashboard" element={<Admindashboard />} />

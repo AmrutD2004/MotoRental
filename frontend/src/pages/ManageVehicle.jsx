@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import AdminLayout from '../components/AdminLayout'
 import { IoSettingsSharp } from "react-icons/io5";
 import { FaDatabase, FaEdit } from 'react-icons/fa';
+import { CiAirportSign1, CiEdit } from "react-icons/ci";
+
 import { useNavigate,Link } from 'react-router-dom';
 import { MdDeleteForever } from 'react-icons/md';
 import Button from '../components/Button'
@@ -76,7 +78,7 @@ const ManageVehicle = () => {
                                 <td className='border border-sm font-semibold'>{v.vehicle_model_year}</td>
 
                                 <td className='border border-sm font-semibold'><div className='flex gap-2 justify-center m-2'>
-                                    <Link to='/admin-editvehicle' state={{vehicleData : v}} className='flex items-center justify-center px-3 py-2 bg-green-600 rounded' style={{ textDecoration: 'none', color: 'white' }}><FaEdit className='me-2' />Edit</Link><Button/>
+                                    <Link to='/admin-editvehicle' state={{vehicleData : v}} className='flex items-center justify-center px-4 py-2 !text-neutral-800 font-sm border hover:bg-[#00ffcc] rounded' style={{ textDecoration: 'none', color: 'white' }}><CiEdit className='me-2' />Edit</Link><Button/>
                                 </div></td>
 
                             </tr>

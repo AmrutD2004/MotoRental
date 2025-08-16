@@ -9,12 +9,14 @@ import { MdDirectionsBike } from "react-icons/md";
 import { GrServices } from "react-icons/gr";
 import { FaGasPump } from "react-icons/fa";
 import { SlCalender } from "react-icons/sl";
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
 
 
 const Home = () => {
+  const navigate = useNavigate();
 
   const [vehicles, setVehicles] = useState([]);
 
@@ -46,10 +48,12 @@ const Home = () => {
 
           {/* CTA Buttons */}
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
-            <button className="bg-pink-400 hover:bg-pink-500 text-white px-6 py-3 rounded-md shadow-md transition duration-200">
+            <button onClick={() => {
+              document.getElementById('featurebike')?.scrollIntoView({ behavior: 'smooth' });
+            }} className="bg-pink-400 hover:bg-pink-500 !text-white px-6 py-3 rounded-md shadow-md transition duration-200 cursor-pointer " style={{ scrollBehavior: 'smooth' }}>
               Explore Bike
             </button>
-            <button className="bg-transparent border border-neutral-300 hover:bg-neutral-200 text-neutral-800 px-6 py-3 rounded-md shadow-sm transition duration-200 flex items-center">
+            <button onClick={() => navigate('/bike-listing')} className="bg-transparent border border-neutral-300 hover:bg-neutral-200 text-neutral-800 px-6 py-3 rounded-md shadow-sm transition duration-200 flex items-center cursor-pointer">
               Book Now <FaArrowRightLong className="ml-2 text-neutral-500" />
             </button>
           </div>
@@ -166,7 +170,7 @@ const Home = () => {
             <div className='text-center text-white p-6'>
               <h1 className='text-4xl md:text-6xl font-bold mb-4'>50% OFF</h1>
               <p className='text-lg md:text-xl'>On your first motorbike rental</p>
-              <button className='mt-6 px-6 py-2 bg-pink-500 text-white font-semibold cursor-pointer rounded hover:bg-pink-600 transition duration-200'>
+              <button onClick={() => navigate('/bike-listing')} className='mt-6 px-6 py-2 bg-pink-500 text-white font-semibold cursor-pointer rounded hover:bg-pink-600 transition duration-200'>
                 Book Now
               </button>
             </div>
@@ -175,31 +179,42 @@ const Home = () => {
 
         <div className='h-[15vh]'></div>
         <div className='max-w-6xl mx-auto mt-5 py-6 px-5'>
-          <div className='flex items bg-center justify-center'>
+          <div id='featurebike' className='flex items bg-center justify-center'>
             <h1 className='text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-neutral-700 to-neutral-900'>Featured Bike</h1>
           </div>
-          <div className='grid grid-cols-1 sm:grid-cols-3 gap-6 my-20 px-2 items-center justify-center group'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 my-20 px-2 items-center justify-center group'>
             {vehicles.map((v, idx) => (
-              <div className='w-full bg-neutral-200 h-[45vh] rounded shadow-md group-hover:blur-sm hover:!blur-none group-hover:scale-[0.85] hover:!scale-100 transition duration 200 '>
-                <div className=' flex justify-center'>
+              <div
+                key={v.image1}
+                className='flex flex-col justify-between bg-white h-[400px] rounded shadow-md p-4 transform transition-all duration-300 hover:scale-105 hover:bg-neutral-200'
+              >
+                <div className='flex justify-center'>
                   <img
-                    src={`http://127.0.0.1:8000${v.image1}`}
-                    alt={v.image1}
-                    className="mt-5 h-[150px] rounded object-contain"
+                    src={v.image1}
+                    alt={v.vehicle_name}
+                    className='h-[130px] object-contain'
                   />
                 </div>
-                <div className='flex items-center justify-center mt-4 font-semibold text-2xl text-neutral-800'>
-                  <h2>{v.vehicle_name}</h2>
+
+                <div className='text-center mt-3'>
+                  <Link to={`/vehicledetail/${v.id}`} className='text-xl font-semibold !text-neutral-800 truncate'>{v.vehicle_name}</Link>
                 </div>
-                <div className='flex items-center justify-center mt-5 text-center'>
-                  <SlCalender className='me-2 text-pink-500' /><span className='font-medium text-lg'>{v.vehicle_model_year} Model</span><span className='text-neutral-500 ms-4 me-4'>|</span><FaGasPump className='me-2 text-pink-500' /><span className='font-medium text-lg'>{v.vehicle_fuel_type}</span>
+
+                <div className='flex justify-center items-center gap-2 mt-2 text-sm'>
+                  <SlCalender className='text-pink-500' />
+                  <span className='text-gray-800 font-medium'>{v.vehicle_model_year} Model</span>
+                  <span className='text-gray-500'>|</span>
+                  <FaGasPump className='text-pink-500' />
+                  <span className='text-gray-800 font-medium'>{v.vehicle_fuel_type}</span>
                 </div>
-                <div className='flex items-center justify-center'>
-                  <button className='mt-6 px-6 py-2 bg-pink-500 text-white font-semibold cursor-pointer rounded hover:bg-pink-600 transition duration-200'>
+
+                <div className='mt-4 text-center'>
+                  <button onClick={() => navigate(`/vehicledetail/${v.id}`)} className='bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-md cursor-pointer'>
                     {v.vehicle_rent_price} ₹/ Day
                   </button>
                 </div>
               </div>
+
             ))}
           </div>
         </div>

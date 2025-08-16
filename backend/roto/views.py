@@ -51,10 +51,9 @@ def add_vehicles(request):
 
 @api_view(['GET'])
 def manage_vehicle(request):
-
     vehicles = Vehicle.objects.all()
-    vehicleData = Vehicleserializer(vehicles, many=True)
-    return Response(vehicleData.data)
+    serializer = Vehicleserializer(vehicles, many=True, context={'request': request})
+    return Response(serializer.data, status=200)
 
 @api_view(['PUT'])
 def update_company(request, company_id):
@@ -96,7 +95,7 @@ def user_signup(request):
     try:
         if userData.is_valid():
             userData.save()
-        return Response({'message' : 'SignUp Successfully !..'},status = 200)
+            return Response({'message' : 'SignUp Successfully !..'},status = 200)
     except:
         return Response({'message' : 'Try Again !..'},status = 401)
     
@@ -111,3 +110,82 @@ def user_login(request):
         return Response({'message' : 'Login Successfully !..','userID':user.id, 'fullname':user.first_name},status = 200)
     except:
         return Response({'message' : 'Invalid Credentials !..'},status = 401)
+    
+
+@api_view(['GET'])
+def search_vehicle(request):
+    company_id = request.GET.get('company')
+    vehicle_fuel_type = request.GET.get('fueltype')
+
+    try:
+        vehicles = Vehicle.objects.filter(company_id=company_id, vehicle_fuel_type=vehicle_fuel_type)
+        serializer = Vehicleserializer(vehicles, many=True, context={'request': request})
+        return Response({'searchedVehicle': serializer.data}, status=200)
+    except:
+        return Response({'message' : 'Somthing went wrong !..'},status = 401)
+
+
+
+@api_view(['GET'])
+def detail_vehicle(request, vehicle_id):
+    try:
+        vehicle = Vehicle.objects.get(id=vehicle_id)
+    except Vehicle.DoesNotExist:
+        return Response({'error': 'Vehicle not found'}, status=404)
+
+    detailvehicle = Vehicleserializer(vehicle, context={'request': request})
+    return Response({'detailVehicle': detailvehicle.data}, status=200)
+
+
+
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+@api_view(['POST'])
+def vehicle_booking(request):
+    try:
+        # Get data from request
+        data = request.data
+        
+        # Validate required fields exist
+        required_fields = ['user_id', 'vehicle_id', 'start_date', 'end_date']
+        for field in required_fields:
+            if field not in data:
+                return Response({'error': f'Missing required field: {field}'}, status=400)
+        
+        # Prepare booking data
+        booking_data = {
+            'user': data['user_id'],
+            'vehicle': data['vehicle_id'],
+            'start_date': data['start_date'],
+            'end_date': data['end_date'],
+            'booking_desc': data.get('description', ''),
+        }
+        
+        serializer = BookingSerializer(data=booking_data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({
+                'success': True,
+                'booking_id': serializer.data['booking_id'],
+                'total_price': serializer.data['total_price']
+            }, status=201)
+        
+        return Response({
+            'success': False,
+            'errors': serializer.errors
+        }, status=400)
+        
+    except Exception as e:
+        return Response({
+            'success': False,
+            'error': str(e)
+        }, status=500)
+
+
+@api_view(['GET'])
+def user_bookings(request, user_id):
+    bookings = Booking.objects.filter(user=user_id)  # Query from model, not serializer
+    userBookings = BookingSerializer(bookings, many=True, context={'request': request})
+    return Response({'userBookings': userBookings.data}, status=200)

@@ -73,7 +73,7 @@ const ManageCompany = () => {
                                 <td className='border border-sm font-semibold'>{com.company_name}</td>
                                 <td className='border border-sm font-semibold'>{com.company_date}</td>
                                 <td className='border border-sm font-semibold'><div className='flex gap-2 justify-center m-2'>
-                                   <Modal company={com} onSuccess={fetchCompanies} /><Button company={com} onSuccess={fetchCompanies}/>
+                                   <Modal  company={com} onSuccess={fetchCompanies} /><Button company={com} onSuccess={fetchCompanies}/>
                                 </div></td>
 
                             </tr>

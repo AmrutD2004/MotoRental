@@ -12,12 +12,18 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+import pymysql
+
+import dj_database_url
+
+
+pymysql.install_as_MySQLdb()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -87,7 +93,22 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'sql12794032',  # Replace XXX with actual DB name
+#         'USER': 'sql12794032',
+#         'PASSWORD': 'bAZCt3PgDm',
+#         'HOST': 'sql12.freesqldatabase.com',
+#         'PORT': '3306',
+#     }
+# }
 
+# DATABASES = {
+#     'default': dj_database_url.parse(
+#         os.environ.get('DATABASE_URL', 'postgresql://postgres.xduxstikltggqpjgmvfp:Amrut2004.@aws-0-us-east-2.pooler.supabase.com:5432/postgres')
+#     )
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -124,6 +145,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),'backend')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

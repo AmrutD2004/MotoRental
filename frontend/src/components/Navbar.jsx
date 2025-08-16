@@ -68,6 +68,13 @@ const Navbar = () => {
                   </NavigationMenuItem>
                   <NavigationMenuItem>
                     <NavigationMenuLink asChild>
+                      <Link to="/bike-listing" className="text-muted-foreground hover:text-primary py-1.5 font-medium" style={{ color: "black" }}>
+                        Bike Listing
+                      </Link>
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                  <NavigationMenuItem>
+                    <NavigationMenuLink asChild>
                       <Link to="/admin-login" className="text-muted-foreground hover:text-primary py-1.5 font-medium" style={{ color: "black" }}>
                         Admin
                       </Link>
@@ -101,6 +108,12 @@ const Navbar = () => {
                       </Link>
                     </NavigationMenuLink>
                   </NavigationMenuItem>
+                  <p className="text-pink-500">{fullname}</p>
+                    <NavigationMenuItem>
+                      <NavigationMenuLink>
+                        <Link to='/user-booking' className="font-medium text-sm !text-pink-500">My Bookings</Link>
+                      </NavigationMenuLink>
+                    </NavigationMenuItem>
                   <NavigationMenuItem>
                     <NavigationMenuLink asChild>
                       <button
@@ -197,6 +210,12 @@ const Navbar = () => {
                           </Link>
                         </NavigationMenuLink>
                       </NavigationMenuItem>
+                      <p className="text-pink-500">{fullname}</p>
+                       <NavigationMenuItem>
+                      <NavigationMenuLink>
+                        <Link to='/user-booking' className="font-medium text-sm !text-pink-500">My Bookings</Link>
+                      </NavigationMenuLink>
+                    </NavigationMenuItem>
                       <NavigationMenuItem>
                         <NavigationMenuLink asChild>
                           <button

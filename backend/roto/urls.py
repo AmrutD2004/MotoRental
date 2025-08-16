@@ -11,4 +11,8 @@ urlpatterns = [
     path('update-vehicle/<int:vehicle_id>/',update_vehicle, name='update_vehicle'),
     path('user-signup/',user_signup, name='user_signup'),
     path('user-login/',user_login, name='user_login'),
+    path('search-vehicle/',search_vehicle, name='search_vehicle'),
+    path('detail-vehicle/<int:vehicle_id>/',detail_vehicle, name='detail_vehicle'),
+    path('vehicle-booking/',vehicle_booking, name='vehicle_booking'),
+    path('user-bookings/<int:user_id>',user_bookings, name='user_bookings'),
 ]
