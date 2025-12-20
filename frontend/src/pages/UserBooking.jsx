@@ -14,7 +14,7 @@ const UserBooking = () => {
             })
             .catch(err => console.error('Error fetching bookings:', err));
     };
-    
+
     useEffect(() => {
         if (userId) {
             fetchBookings(userId);
@@ -42,6 +42,8 @@ const UserBooking = () => {
                                 <th className='font-medium border border-neutral-800'>Start Date</th>
                                 <th className='font-medium border border-neutral-800'>End Date</th>
                                 <th className='font-medium border border-neutral-800'>Total Price</th>
+                                <th className='font-medium border border-neutral-800'>Status</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -53,6 +55,17 @@ const UserBooking = () => {
                                     <td className='text-center border border-neutral-800 px-4 py-3'>{booking.start_date}</td>
                                     <td className='text-center border border-neutral-800 px-4 py-3'>{booking.end_date}</td>
                                     <td className='text-center border border-neutral-800 px-4 py-3'>{booking.total_price}</td>
+                                    <td className='text-center border border-neutral-800 px-4 py-3'>
+                                        <span
+                                            className={`px-3 py-1 rounded-full text-sm font-medium
+      ${booking.status === 'PENDING' && 'bg-yellow-100 text-yellow-700'}
+      ${booking.status === 'APPROVED' && 'bg-green-100 text-green-700'}
+      ${booking.status === 'CANCELLED' && 'bg-red-100 text-red-700'}
+    `}
+                                        >
+                                            {booking.status}
+                                        </span>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

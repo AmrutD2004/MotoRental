@@ -16,6 +16,7 @@ import UserLogin from './pages/UserLogin'
 import BikeListing from './pages/BikeListing'
 import VehicleDetails from './pages/VehicleDetails'
 import UserBooking from './pages/UserBooking'
+import ManageBookings from './pages/ManageBookings'
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route path="/admin-addvehicles" element={<AddVehicles />} />
         <Route path="/admin-managevehicle" element={<ManageVehicle />} />
         <Route path="/admin-editvehicle" element={<EditVehicle />} />
+        <Route path="/manage-bookings" element={<ManageBookings />} />
       </Routes>
       </BrowserRouter>
     </>

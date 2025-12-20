@@ -24,7 +24,7 @@ export default function Modal({ company, onSuccess }) {
   const [editCompany, setEditcompany] = useState(company || {})
   const handleEdit = (company) => {
     setEditcompany(company)
-  }
+  } 
   const handleUpdate = async ()=>{
     try{
       const response = await fetch(`http://127.0.0.1:8000/api/update-company/${editCompany.id}/`,{

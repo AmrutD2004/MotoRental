@@ -56,6 +56,12 @@ class Vehicle(models.Model):
 # Booking Model
 # -----------------------------
 class Booking(models.Model):
+    STATUS_CHOICES = (
+        ('PENDING', 'Pending'),
+        ('APPROVED', 'Approved'),
+        ('CANCELLED', 'Cancelled'),
+    )
+    
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
     start_date = models.DateField()
@@ -65,6 +71,11 @@ class Booking(models.Model):
     booking_desc = models.CharField(max_length=200, blank=True, null=True)
     booking_date = models.DateTimeField(auto_now_add=True)
     is_returned = models.BooleanField(default=False)
+    status = models.CharField(
+        max_length=10,
+        choices=STATUS_CHOICES,
+        default='PENDING'
+    )
 
     def save(self, *args, **kwargs):
         # Generate booking_id only if new

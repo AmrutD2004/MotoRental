@@ -61,13 +61,6 @@ const Navbar = () => {
                   </NavigationMenuItem>
                   <NavigationMenuItem>
                     <NavigationMenuLink asChild>
-                      <Link to="/about" className="text-muted-foreground hover:text-primary py-1.5 font-medium" style={{ color: "black" }}>
-                        About
-                      </Link>
-                    </NavigationMenuLink>
-                  </NavigationMenuItem>
-                  <NavigationMenuItem>
-                    <NavigationMenuLink asChild>
                       <Link to="/bike-listing" className="text-muted-foreground hover:text-primary py-1.5 font-medium" style={{ color: "black" }}>
                         Bike Listing
                       </Link>
@@ -91,13 +84,6 @@ const Navbar = () => {
                     <NavigationMenuLink asChild>
                       <Link to="/" className="text-muted-foreground hover:text-primary py-1.5 font-medium" style={{ color: "black" }}>
                         Home
-                      </Link>
-                    </NavigationMenuLink>
-                  </NavigationMenuItem>
-                  <NavigationMenuItem>
-                    <NavigationMenuLink asChild>
-                      <Link to="/about" className="text-muted-foreground hover:text-primary py-1.5 font-medium" style={{ color: "black" }}>
-                        About
                       </Link>
                     </NavigationMenuLink>
                   </NavigationMenuItem>
@@ -165,13 +151,6 @@ const Navbar = () => {
                         <NavigationMenuLink asChild>
                           <Link to="/login" className="text-muted-foreground hover:text-primary py-1.5 font-medium" style={{ color: "black" }}>
                             Login
-                          </Link>
-                        </NavigationMenuLink>
-                      </NavigationMenuItem>
-                      <NavigationMenuItem>
-                        <NavigationMenuLink asChild>
-                          <Link to="/about" className="text-muted-foreground hover:text-primary py-1.5 font-medium" style={{ color: "black" }}>
-                            About
                           </Link>
                         </NavigationMenuLink>
                       </NavigationMenuItem>

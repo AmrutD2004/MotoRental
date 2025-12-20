@@ -189,3 +189,26 @@ def user_bookings(request, user_id):
     bookings = Booking.objects.filter(user=user_id)  # Query from model, not serializer
     userBookings = BookingSerializer(bookings, many=True, context={'request': request})
     return Response({'userBookings': userBookings.data}, status=200)
+
+@api_view(['GET'])
+def all_bookings(request):
+    bookings = Booking.objects.all()
+    allBookings = BookingSerializer(bookings, many=True)
+    return Response(allBookings.data)
+
+
+@api_view(['PUT'])
+def update_booking_status(request, booking_id):
+    try:
+        booking = Booking.objects.get(booking_id=booking_id)
+        status = request.data.get('status')
+        
+        if status not in ['PENDING', 'APPROVED', 'CANCELLED']:
+            return Response({'error': 'Invalid status'}, status=400)
+        booking.status = status
+        booking.save()
+        return Response({'message': 'Booking status updated'}, status=200)
+    except Booking.DoesNotExist:
+        return Response({'error': 'Booking not found'}, status=404)
+        
+        

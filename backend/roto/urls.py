@@ -15,4 +15,7 @@ urlpatterns = [
     path('detail-vehicle/<int:vehicle_id>/',detail_vehicle, name='detail_vehicle'),
     path('vehicle-booking/',vehicle_booking, name='vehicle_booking'),
     path('user-bookings/<int:user_id>',user_bookings, name='user_bookings'),
+    path('all-bookings/',all_bookings, name='all_bookings'),
+    path('update-status/<str:booking_id>/',update_booking_status, name='update_booking_status'),
+    
 ]

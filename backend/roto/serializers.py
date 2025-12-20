@@ -52,9 +52,12 @@ class Userserializer(serializers.ModelSerializer):
 
 
 class BookingSerializer(serializers.ModelSerializer):
+    first_name = serializers.CharField(source='user.first_name', read_only=True)
     vehicle_name = serializers.CharField(source='vehicle.vehicle_name', read_only=True)
+    mobile = serializers.CharField(source='user.mobile', read_only=True)
     class Meta:
         model = Booking
-        fields = ['user', 'vehicle','vehicle_name', 'start_date', 'end_date', 'total_price', 'booking_id', 'booking_desc', 'booking_date', 'is_returned'] 
-        read_only_fields = ('booking_id', 'total_price')
+        fields = ['user', 'first_name', 'vehicle','vehicle_name', 'mobile', 'start_date', 'end_date', 'total_price', 'booking_id', 'booking_desc', 'booking_date', 'is_returned', 'status'] 
+        read_only_fields = ('booking_id', 'total_price', 'status')
 
+    

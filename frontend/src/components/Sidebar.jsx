@@ -8,10 +8,27 @@ import { TbReportAnalytics } from "react-icons/tb";
 import { MdOutlineCircle } from "react-icons/md";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { RiArrowDropUpLine } from "react-icons/ri";
+import axios from 'axios'
 
 import '../assets/css/admin.css'
 
 const Sidebar = () => {
+  const [bookings, setBookings] = useState([])
+  const fetchBookings = async () => {
+        try {
+            const response = await axios.get('http://127.0.0.1:8000/api/all-bookings/')
+            const data = await response.data
+            
+            setBookings(data)
+
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    useEffect(()=>{
+      fetchBookings()
+    },[])
 
   const [openMenu, setOpenmenu] = useState({
     vehicle: false,
@@ -31,7 +48,7 @@ const Sidebar = () => {
       </div>
 
       <div className='flex items-center justify-center mt-5 w-full hover:text-amber-300'>
-        <Link className='text-white  px-4 py-2 hover:bg-[#6c757d] p-2 m-0.5 w-full flex items-center' style={{ color: 'white' }}><MdDashboard className='me-2' />Dashboard</Link>
+        <Link to={'/admin-dashboard'} className='text-white  px-4 py-2 hover:bg-[#6c757d] p-2 m-0.5 w-full flex items-center' style={{ color: 'white' }}><MdDashboard className='me-2' />Dashboard</Link>
       </div>
 
       <div className='flex items-center justify-center mt-5'>
@@ -70,31 +87,20 @@ const Sidebar = () => {
 
       <div className='flex items-center justify-center mt-5'>
         <button onClick={() => toggleMenu('booking')} className='text-white  px-4 py-2 hover:bg-[#6c757d] p-2 m-0.5 w-full flex items-center' style={{ color: 'white' }}>
-          <FaBookmark className='me-2' />Bookings
+          <FaBookmark className='me-2' />Bookings <span className='ms-auto bg-red-500 px-2.5 border py-1 rounded-full text-sm font-medium scale-75'>{bookings.length}</span>
           {!openMenu.booking ? (
             <RiArrowDropDownLine className='me-2 ms-auto' style={{ fontSize: '30', color: 'white' }} />
           ) : (
             <RiArrowDropUpLine className='me-2 ms-auto' style={{ fontSize: '30', color: 'white' }} />
           )}
         </button>
+        
       </div>
       {openMenu.booking && (
         <div>
-          <Link className='text-white  px-8 py-2  p-2 m-0.5 w-full flex items-center vehicle' style={{ color: 'white' }}><MdOutlineCircle className='me-2' />Manage Bookings</Link>
+          <Link to={'/manage-bookings'} className='text-white  px-8 py-2  p-2 m-0.5 w-full flex items-center vehicle' style={{ color: 'white' }}><MdOutlineCircle className='me-2' />Manage Bookings</Link>
         </div>
       )}
-
-      <div className='flex items-center justify-center mt-5'>
-        <Link className='text-white  px-4 py-2 hover:bg-[#6c757d] p-2 m-0.5 w-full flex items-center' style={{ color: 'white' }}><FaUser className='me-2' />Reg Users</Link>
-      </div>
-
-      <div className='flex items-center justify-center mt-5'>
-        <Link className='text-white  px-4 py-2 hover:bg-[#6c757d] p-2 m-0.5 w-full flex items-center' style={{ color: 'white' }}><FaSearch className='me-2' />Search</Link>
-      </div>
-
-      <div className='flex items-center justify-center mt-5'>
-        <Link className='text-white  px-4 py-2 hover:bg-[#6c757d] p-2 m-0.5 w-full flex items-center' style={{ color: 'white' }}><TbReportAnalytics className='me-2' />Report</Link>
-      </div>
     </div>
   )
 }
