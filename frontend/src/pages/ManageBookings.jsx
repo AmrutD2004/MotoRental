@@ -10,7 +10,7 @@ const ManageBookings = () => {
     const [bookings, setBookings] = useState([])
     const fetchBookings = async () => {
         try {
-            const response = await axios.get('http://127.0.0.1:8000/api/all-bookings/')
+            const response = await axios.get('https://motorental-backend.onrender.com/api/all-bookings/')
             const data = await response.data
 
             setBookings(data)
@@ -23,7 +23,7 @@ const ManageBookings = () => {
         try {
 
             await axios.put(
-                `http://127.0.0.1:8000/api/update-status/${bookingId}/`,
+                `https://motorental-backend.onrender.com/api/update-status/${bookingId}/`,
                 { status }
             )
             fetchBookings()

@@ -7,7 +7,7 @@ const UserBooking = () => {
     const userId = localStorage.getItem('userID');
 
     const fetchBookings = (userId) => {
-        fetch(`http://127.0.0.1:8000/api/user-bookings/${userId}`)
+        fetch(`https://motorental-backend.onrender.com/api/user-bookings/${userId}`)
             .then(res => res.json())
             .then(data => {
                 setMybookings(data.userBookings || []);

@@ -25,7 +25,7 @@ const VehicleDetails = () => {
     const { vehicleId } = useParams();
 
     const fetchVehicleDetail = () => {
-        fetch(`http://127.0.0.1:8000/api/detail-vehicle/${vehicleId}/`)
+        fetch(`https://motorental-backend.onrender.com/api/detail-vehicle/${vehicleId}/`)
             .then(res => {
                 if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
                 return res.json();
@@ -79,7 +79,7 @@ const VehicleDetails = () => {
             description: formData.description
         };
 
-        const response = await fetch('http://127.0.0.1:8000/api/vehicle-booking/', {
+        const response = await fetch('https://motorental-backend.onrender.com/api/vehicle-booking/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

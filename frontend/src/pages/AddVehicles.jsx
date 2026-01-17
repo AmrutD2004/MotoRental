@@ -29,7 +29,7 @@ const AddVehicles = () => {
             navigate('/admin-login')
         }
 
-        fetch('http://127.0.0.1:8000/api/manage-company/')
+        fetch('https://motorental-backend.onrender.com/api/manage-company/')
             .then(res => res.json())
             .then(data => {
                 setCompanies(data)
@@ -68,7 +68,7 @@ const AddVehicles = () => {
         bundledata.append('vehicle_model_year', formData.vehicle_model_year)
 
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/add-vehicles/', {
+            const response = await fetch('https://motorental-backend.onrender.com/api/add-vehicles/', {
                 method: 'POST',
                 body: bundledata,
             })

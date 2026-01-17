@@ -12,7 +12,7 @@ export default function Component({ company, onSuccess }) {
 
 
       try {
-        const response = await fetch(`http://127.0.0.1:8000/api/delete-company/${companyID}/`, {
+        const response = await fetch(`https://motorental-backend.onrender.com/api/delete-company/${companyID}/`, {
           method: 'DELETE',
         })
         if (response.ok) {

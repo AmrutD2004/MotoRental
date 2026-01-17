@@ -16,7 +16,7 @@ const ManageCompany = () => {
     const [allcompanies, setAllCompanies] = useState([]);
 
     const fetchCompanies=()=>{
-            fetch('http://127.0.0.1:8000/api/manage-company/')
+            fetch('https://motorental-backend.onrender.com/api/manage-company/')
             .then(res => res.json())
             .then(data => {
                 setCompanies(data)

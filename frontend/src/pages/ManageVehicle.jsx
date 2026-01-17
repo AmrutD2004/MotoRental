@@ -14,7 +14,7 @@ const ManageVehicle = () => {
     const [allvehicles, setAllvehicles] = useState([]);
 
     const fetchVehicles = ()=>{
-        fetch('http://127.0.0.1:8000/api/manage-vehicle/')
+        fetch('https://motorental-backend.onrender.com/api/manage-vehicle/')
             .then(res => res.json())
             .then(data => {
                 setVehicles(data)

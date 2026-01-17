@@ -25,7 +25,7 @@ const BikeListing = () => {
 
 
     const fetchVehicles = () => {
-        fetch('http://127.0.0.1:8000/api/manage-vehicle/')
+        fetch('https://motorental-backend.onrender.com/api/manage-vehicle/')
             .then(res => res.json())
             .then(data => {
                 setVehicles(data)
@@ -36,7 +36,7 @@ const BikeListing = () => {
     useEffect(() => {
         fetchVehicles()
 
-        fetch('http://127.0.0.1:8000/api/manage-company/')
+        fetch('https://motorental-backend.onrender.com/api/manage-company/')
             .then(res => res.json())
             .then(data => {
                 setCompanies(data)
@@ -50,7 +50,7 @@ const BikeListing = () => {
         return;
     }
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/search-vehicle/?company=${selectCompany}&fueltype=${selectfuel}`);
+            const response = await fetch(`https://motorental-backend.onrender.com/api/search-vehicle/?company=${selectCompany}&fueltype=${selectfuel}`);
             const data = await response.json();
             setVehicles(data.searchedVehicle || []);
         } catch (error) {

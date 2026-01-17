@@ -20,7 +20,7 @@ const EditVehicle = () => {
             navigate('/admin-login')
         }
 
-        fetch('http://127.0.0.1:8000/api/manage-company/')
+        fetch('https://motorental-backend.onrender.com/api/manage-company/')
             .then(res => res.json())
             .then(data => {
                 setCompanies(data)
@@ -82,7 +82,7 @@ const EditVehicle = () => {
         if (formData.image4) formDataToSend.append('image4', formData.image4)
 
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/update-vehicle/${vehicleData.id}/`, {
+            const response = await fetch(`https://motorental-backend.onrender.com/api/update-vehicle/${vehicleData.id}/`, {
                 method: 'PUT',
                 body: formDataToSend,
                 

@@ -12,7 +12,7 @@ const Admindashboard = () => {
 
   const fetchVehicles = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/api/manage-vehicle/')
+      const response = await axios.get('https://motorental-backend.onrender.com/api/manage-vehicle/')
       const data = await response.data
       console.log(data)
       setVehicles(data)
@@ -23,7 +23,7 @@ const Admindashboard = () => {
   }
   const fetchCompanies = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/api/manage-company/')
+      const response = await axios.get('https://motorental-backend.onrender.com/api/manage-company/')
       const data = await response.data
       console.log(data)
       setCompanies(data)
@@ -33,7 +33,7 @@ const Admindashboard = () => {
   }
   const fetchBookings = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/api/all-bookings/')
+      const response = await axios.get('https://motorental-backend.onrender.com/api/all-bookings/')
       const data = await response.data
       console.log(data)
       setBookings(data)

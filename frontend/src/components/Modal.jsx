@@ -27,7 +27,7 @@ export default function Modal({ company, onSuccess }) {
   } 
   const handleUpdate = async ()=>{
     try{
-      const response = await fetch(`http://127.0.0.1:8000/api/update-company/${editCompany.id}/`,{
+      const response = await fetch(`https://motorental-backend.onrender.com/api/update-company/${editCompany.id}/`,{
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
