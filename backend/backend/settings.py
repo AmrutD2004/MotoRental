@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
-import pymysql
 from dotenv import load_dotenv
 from urllib.parse import urlparse, parse_qsl
 
@@ -20,7 +19,7 @@ load_dotenv()
 
 
 
-pymysql.install_as_MySQLdb()
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
