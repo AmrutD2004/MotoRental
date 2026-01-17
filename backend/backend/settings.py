@@ -52,8 +52,11 @@ INSTALLED_APPS = [
     'roto',
     'corsheaders',
     'rest_framework',
+    'cloudinary_storage', 
+    'cloudinary'
 ]
 CORS_ALLOW_ALL_ORIGINS = True
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -144,8 +147,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
-MEDIA_URL = '/media/'
+
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),'backend')
 
 # Default primary key field type
