@@ -18,6 +18,7 @@ const ManageVehicle = () => {
             .then(res => res.json())
             .then(data => {
                 setVehicles(data)
+                console.log(data)
                 setAllvehicles(data)
             })
     }

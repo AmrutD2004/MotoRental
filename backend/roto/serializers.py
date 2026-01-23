@@ -8,7 +8,7 @@ class Companyserializer(serializers.ModelSerializer):
 
 class Vehicleserializer(serializers.ModelSerializer):
     company_name = serializers.CharField(source='company.company_name', read_only=True)
-    
+
     image1 = serializers.SerializerMethodField()
     image2 = serializers.SerializerMethodField()
     image3 = serializers.SerializerMethodField()
@@ -16,33 +16,33 @@ class Vehicleserializer(serializers.ModelSerializer):
 
     class Meta:
         model = Vehicle
-        fields = ['id', 'vehicle_name', 'company', 'company_name', 'vehicle_rent_price',
-                  'vehicle_desc', 'image1', 'image2', 'image3', 'image4',
-                  'vehicle_fuel_type', 'vehicle_model_year', 'is_available']
+        fields = [
+            'id', 'vehicle_name', 'company', 'company_name',
+            'vehicle_rent_price', 'vehicle_desc',
+            'image1', 'image2', 'image3', 'image4',
+            'vehicle_fuel_type', 'vehicle_model_year', 'is_available'
+        ]
+
+    def _get_image_url(self, image):
+        if not image:
+            return None
+        # Ensure we're returning the full Cloudinary URL
+        if hasattr(image, 'url'):
+            return image.url
+        return None
 
     def get_image1(self, obj):
-        request = self.context.get('request')
-        if obj.image1 and hasattr(obj.image1, 'url'):
-            return request.build_absolute_uri(obj.image1.url)
-        return None
+        return self._get_image_url(obj.image1)
 
     def get_image2(self, obj):
-        request = self.context.get('request')
-        if obj.image2 and hasattr(obj.image2, 'url'):
-            return request.build_absolute_uri(obj.image2.url)
-        return None
+        return self._get_image_url(obj.image2)
 
     def get_image3(self, obj):
-        request = self.context.get('request')
-        if obj.image3 and hasattr(obj.image3, 'url'):
-            return request.build_absolute_uri(obj.image3.url)
-        return None
+        return self._get_image_url(obj.image3)
 
     def get_image4(self, obj):
-        request = self.context.get('request')
-        if obj.image4 and hasattr(obj.image4, 'url'):
-            return request.build_absolute_uri(obj.image4.url)
-        return None
+        return self._get_image_url(obj.image4)
+
 
 
 class Userserializer(serializers.ModelSerializer):

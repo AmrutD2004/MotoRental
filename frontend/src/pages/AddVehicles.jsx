@@ -13,7 +13,7 @@ const AddVehicles = () => {
         company: '',
         vehicle_name: '',
         vehicle_rent_price: '',
-        vehicle_desc: '', 
+        vehicle_desc: '',
         image1: null,
         image2: null,
         image3: null,
@@ -60,10 +60,12 @@ const AddVehicles = () => {
         bundledata.append('vehicle_name', formData.vehicle_name)
         bundledata.append('vehicle_rent_price', formData.vehicle_rent_price)
         bundledata.append('vehicle_desc', formData.vehicle_desc)
-        bundledata.append('image1', formData.image1)
-        bundledata.append('image2', formData.image2)
-        bundledata.append('image3', formData.image3)
-        bundledata.append('image4', formData.image4)
+        
+        if (formData.image1) bundledata.append('image1', formData.image1)
+        if (formData.image2) bundledata.append('image2', formData.image2)
+        if (formData.image3) bundledata.append('image3', formData.image3)
+        if (formData.image4) bundledata.append('image4', formData.image4)
+
         bundledata.append('vehicle_fuel_type', formData.vehicle_fuel_type)
         bundledata.append('vehicle_model_year', formData.vehicle_model_year)
 
@@ -234,7 +236,7 @@ const AddVehicles = () => {
                     </div>
 
                     <div className="md:col-span-2 mt-8 text-center">
-                        <button 
+                        <button
                             type="submit"
                             className="btn px-4 py-2 rounded bg-gray-700 text-white hover:bg-gray-800 inline-flex items-center gap-2"
                         >

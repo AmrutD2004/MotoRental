@@ -37,21 +37,21 @@ def manage_company(request):
 from rest_framework.parsers import MultiPartParser, FormParser
 @api_view(['POST'])
 @parser_classes([MultiPartParser, FormParser])
-
 def add_vehicles(request):
-    
-    try:
-        vehicleData = Vehicleserializer(data=request.data)
-        if vehicleData.is_valid():
-            vehicleData.save()
-        return Response({'message' : 'Vehicle Added Successfully !..'},status = 200)
-    except:
-        return Response({'message' : 'Vehicle Cannot Added try again !..'},status = 401)
+    serializer = Vehicleserializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response({'message': 'Vehicle Added Successfully'}, status=201)
+
+    return Response(serializer.errors, status=400)
+
+
 
 
 @api_view(['GET'])
 def manage_vehicle(request):
     vehicles = Vehicle.objects.all()
+    
     serializer = Vehicleserializer(vehicles, many=True, context={'request': request})
     return Response(serializer.data, status=200)
 

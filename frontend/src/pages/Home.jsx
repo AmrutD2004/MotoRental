@@ -25,6 +25,7 @@ const Home = () => {
       .then(res => res.json())
       .then(data => {
         setVehicles(data)
+        console.log(data)
       })
   }
 

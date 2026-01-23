@@ -14,7 +14,10 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 from urllib.parse import urlparse, parse_qsl
-
+import cloudinary_storage
+# import cloudinary
+# import cloudinary.uploader
+# import cloudinary.api
 load_dotenv()
 
 
@@ -52,11 +55,11 @@ INSTALLED_APPS = [
     'roto',
     'corsheaders',
     'rest_framework',
-    'cloudinary_storage', 
+    # 'cloudinary_storage', 
     'cloudinary'
 ]
 CORS_ALLOW_ALL_ORIGINS = True
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -146,11 +149,20 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
+STATIC_URL = '/static/'
+# MEDIA_URL = '/media/'
 
-
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),'backend')
+# MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),'backend')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# cloudinary.config(
+#     cloud_name = 'dkx2fqxdm',
+#     api_key = '343171343152599',
+#     api_secret = '19qEHTL4BCjgcwhULRK7zxeaeOU'
+# )
+
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

@@ -2,6 +2,7 @@ from django.db import models
 from datetime import date
 import uuid
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 # -----------------------------
 # User Model
@@ -41,10 +42,11 @@ class Vehicle(models.Model):
     vehicle_name = models.CharField(max_length=50)
     vehicle_rent_price = models.DecimalField(max_digits=10, decimal_places=2)
     vehicle_desc = models.TextField(max_length=200, null=True, blank=True)
-    image1 = models.ImageField(upload_to='vehicle_images/', null=True, blank=True)
-    image2 = models.ImageField(upload_to='vehicle_images/', null=True, blank=True)
-    image3 = models.ImageField(upload_to='vehicle_images/', null=True, blank=True)
-    image4 = models.ImageField(upload_to='vehicle_images/', null=True, blank=True)
+    image1 = CloudinaryField('image', folder='vehicle_images', null=True, blank=True)
+    image2 = CloudinaryField('image', folder='vehicle_images', null=True, blank=True)
+    image3 = CloudinaryField('image', folder='vehicle_images', null=True, blank=True)
+    image4 = CloudinaryField('image', folder='vehicle_images', null=True, blank=True)
+
     vehicle_fuel_type = models.CharField(max_length=20, choices=FUEL_CHOICES)
     vehicle_model_year = models.CharField(max_length=20)
     is_available = models.BooleanField(default=True)
