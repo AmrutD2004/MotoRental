@@ -80,7 +80,7 @@ def delete_company(request, company_id):
 @parser_classes([MultiPartParser, FormParser])
 def update_vehicle(request, vehicle_id):
     vehicle = Vehicle.objects.get(id=vehicle_id)
-    updatedVehicle = Vehicleserializer(vehicle, data=request.data)
+    updatedVehicle = VehicleCreateSerializer(vehicle, data=request.data)
     if updatedVehicle.is_valid():
         updatedVehicle.save()
         return Response({'message' : 'Vehicle Updated Successfully !..'},status = 200)
