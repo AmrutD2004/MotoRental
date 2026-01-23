@@ -5,6 +5,23 @@ class Companyserializer(serializers.ModelSerializer):
     class Meta:
         model = Company
         fields = ['id', 'company_name', 'company_date']
+        
+class VehicleCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Vehicle
+        fields = [
+            'vehicle_name',
+            'company',
+            'vehicle_rent_price',
+            'vehicle_desc',
+            'image1',
+            'image2',
+            'image3',
+            'image4',
+            'vehicle_fuel_type',
+            'vehicle_model_year',
+            'is_available'
+        ]
 
 class Vehicleserializer(serializers.ModelSerializer):
     company_name = serializers.CharField(source='company.company_name', read_only=True)

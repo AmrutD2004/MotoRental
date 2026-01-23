@@ -38,7 +38,7 @@ from rest_framework.parsers import MultiPartParser, FormParser
 @api_view(['POST'])
 @parser_classes([MultiPartParser, FormParser])
 def add_vehicles(request):
-    serializer = Vehicleserializer(data=request.data)
+    serializer = VehicleCreateSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response({'message': 'Vehicle Added Successfully'}, status=201)
